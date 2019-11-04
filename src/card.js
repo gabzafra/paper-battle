@@ -9,6 +9,9 @@ class Card {
         this.height = 250;
         this.posX = undefined;
         this.posY = undefined;
+        this.iconGrid = undefined;
+        this.setupIconGrid();
+        console.log(this.iconGrid);
     }
 
     drawCardInPosition(posX, posY) {
@@ -32,13 +35,12 @@ class Card {
 
     drawIcons() {
 
-        //todo usar ofsets en los arrays para el translate
-        this.tagList.forEach(icon => {
+        this.iconGrid.forEach(icon => {
             icon.img.onload = () => {
                 this.ctx.save();
-                this.ctx.translate(15+icon.xOfset, this.height * .60 + icon.yOfset);
+                this.ctx.translate(15 + icon.xOfset, this.height * .60 + icon.yOfset);
                 this.ctx.beginPath();
-                this.ctx.arc(this.posX+15, this.posY+15, 15, 0, Math.PI * 2, true);
+                this.ctx.arc(this.posX + 15, this.posY + 15, 15, 0, Math.PI * 2, true);
                 this.ctx.closePath();
                 this.ctx.clip();
 
@@ -48,11 +50,104 @@ class Card {
                 this.ctx.arc(this.posX, this.posY, 15, 0, Math.PI * 2, true);
                 this.ctx.clip();
                 this.ctx.closePath();
-                
+
                 this.ctx.restore();
             }
         });
 
 
+    }
+
+    setupIconGrid() {
+        let offSetPairs = [];
+        switch (this.tagList.length) {
+            case 1:
+                offSetPairs = [{
+                    x: 55,
+                    y: 0
+                }];
+                break;
+            case 2:
+                offSetPairs = [{
+                    x: 20,
+                    y: 0
+                }, {
+                    x: 100,
+                    y: 0
+                }];
+                break;
+            case 3:
+                offSetPairs = [{
+                    x: 10,
+                    y: 0
+                }, {
+                    x: 55,
+                    y: 0
+                }, {
+                    x: 100,
+                    y: 0
+                }];
+                break;
+            case 4:
+                offSetPairs = [{
+                    x: 20,
+                    y: 0
+                }, {
+                    x: 100,
+                    y: 0
+                }, {
+                    x: 20,
+                    y: 50
+                }, {
+                    x: 100,
+                    y: 50
+                }];
+                break;
+            case 5:
+                offSetPairs = [{
+                    x: 10,
+                    y: 0
+                }, {
+                    x: 55,
+                    y: 0
+                }, {
+                    x: 100,
+                    y: 0
+                }, {
+                    x: 30,
+                    y: 50
+                }, {
+                    x: 80,
+                    y: 50
+                }];
+                break;
+            case 6:
+                offSetPairs = [{
+                    x: 10,
+                    y: 0
+                }, {
+                    x: 55,
+                    y: 0
+                }, {
+                    x: 100,
+                    y: 0
+                }, {
+                    x: 10,
+                    y: 50
+                }, {
+                    x: 55,
+                    y: 50
+                }, {
+                    x: 100,
+                    y: 50
+                }];
+                break;
+        }
+
+        this.iconGrid = this.tagList.map(name => {
+            let icon = icons.filter(elem => elem.name === name);
+            let offsetPair = offSetPairs.shift();
+            return new Icon(icon[0].name, icon[0].src, offsetPair.x, offsetPair.y);
+        });
     }
 }

@@ -28,7 +28,7 @@ const game = {
 
     createDecks: () => {
         //todo blucle forEach para el array deckCollection
-        let testCard = new Card(this.ctx, cards[0].name,cards[0].src,[new Icon(icons[0].name,icons[0].src,0,0),new Icon(icons[0].name,icons[0].src,45,0)]);
+        let testCard = new Card(this.ctx, cards[1].name,cards[1].src,cards[1].icons);
         testCard.drawCardInPosition(100,100);
     }
 }

@@ -11,7 +11,6 @@ class Card {
         this.posY = undefined;
         this.iconGrid = undefined;
         this.setupIconGrid();
-        console.log(this.iconGrid);
     }
 
     drawCardInPosition(posX, posY) {

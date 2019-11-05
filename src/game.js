@@ -27,8 +27,12 @@ const game = {
     },
 
     createDecks: () => {
-        //todo blucle forEach para el array deckCollection
-        let testCard = new Card(this.ctx, cards[1].name,cards[1].src,cards[1].icons);
-        testCard.drawCardInPosition(100,100);
+        decksArray = deckCollection.map(deck => {
+            let cardsArray = deck.cards.map(id => {
+                let newCard = cards.filter(item => item.id === id)[0];
+                return new Card(this.ctx, newCard.name,newCard.src,newCard.icons);    
+            })
+            return new Deck(deck.id,deck.name,cardsArray);
+        });
     }
 }

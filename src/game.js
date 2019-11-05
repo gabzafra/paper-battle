@@ -44,8 +44,6 @@ const game = {
             let deckRef = decksArray.filter(item => item.id === id)[0];
             return new Hero(this.ctx, newHero.id, newHero.name, newHero.life, newHero.src, deckRef);
         });
-
-        heroArray[0].drawHero(100,100);
     },
 
     createMonsters: (...id) => {

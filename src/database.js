@@ -324,7 +324,7 @@ const monsters = [{
         name: "Frenzied Goblin",
         life: 6,
         deckId: 9,
-        src: "./assets/img/blue.svg"
+        src: "./assets/img/frenzied-goblin.svg"
     },
     {
         id: 10,

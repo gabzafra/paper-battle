@@ -5,5 +5,7 @@ body {
 }
 
 #canvas {
-    background-color: greenyellow;
+    background-color:lightgrey;
+    background-position: 0;
+    background-size: 15%;
 }

@@ -377,3 +377,38 @@ const monsters = [{
     }
 
 ];
+
+const backgrounds = [{
+    id: 1,
+    src: "./assets/img/backgrounds/tile01sm.png"
+}, {
+    id: 2,
+    src: "./assets/img/backgrounds/tile02sm.png"
+}, {
+    id: 3,
+    src: "./assets/img/backgrounds/tile03sm.png"
+}, {
+    id: 4,
+    src: "./assets/img/backgrounds/tile04sm.png"
+}, {
+    id: 5,
+    src: "./assets/img/backgrounds/tile05sm.png"
+}, {
+    id: 6,
+    src: "./assets/img/backgrounds/tile06sm.png"
+}, {
+    id: 7,
+    src: "./assets/img/backgrounds/tile07sm.png"
+}, {
+    id: 8,
+    src: "./assets/img/backgrounds/tile08sm.png"
+}, {
+    id: 9,
+    src: "./assets/img/backgrounds/tile09sm.png"
+}, {
+    id: 10,
+    src: "./assets/img/backgrounds/tile10sm.png"
+}, {
+    id: 11,
+    src: "./assets/img/backgrounds/tile11sm.png"
+}];

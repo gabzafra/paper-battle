@@ -1,9 +1,9 @@
-class Background{
-    constructor(arr){
+class Background {
+    constructor(arr) {
         this.imageArray = arr;
     }
 
-    changeBackground(elemDOM) { 
+    changeBackground(elemDOM) {
         elemDOM.style.backgroundImage = `url('${this.imageArray[this.randomInt(0,this.imageArray.length-1)].src}')`;
     }
     randomInt(min, max) {

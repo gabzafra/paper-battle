@@ -6,5 +6,5 @@ window.onload = () => {
         active: () => {
             game.init();
         }
-    });   
+    });
 }

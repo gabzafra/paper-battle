@@ -1,3 +1,10 @@
 window.onload = () => {
-    game.init();
+    WebFont.load({
+        google: {
+            families: ['MedievalSharp']
+        },
+        active: () => {
+            game.init();
+        }
+    });   
 }

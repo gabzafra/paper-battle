@@ -10,7 +10,6 @@ const game = {
     monsterArray: [],
     decksArray: [],
     init: () => {
-        window.addEventListener("click", (e) => console.log(`X:${e.x} Y:${e.y}`));
         this.canvas = document.getElementById("canvas");
         this.ctx = this.canvas.getContext('2d');
         window.addEventListener("resize", (e) => game.updateCanvasSize());
@@ -19,7 +18,11 @@ const game = {
         game.createDecks();
         game.createHeroes(1, 2, 3);
         game.createMonsters(4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
-        this.heroArray[0].drawHero(100,100);
+        game.drawStartScreen();
+        
+
+
+        window.addEventListener("click", (e) => console.log(`X:${e.x} Y:${e.y}`));
         //---->
     },
 
@@ -46,7 +49,7 @@ const game = {
             let deckRef = decksArray.filter(item => item.id === id)[0];
             return new Hero(this.ctx, newHero.id, newHero.name, newHero.life, newHero.src, deckRef);
         });
-        
+
     },
 
     createMonsters: (...id) => {
@@ -54,6 +57,13 @@ const game = {
             let newMonster = monsters.filter(item => item.id === id)[0];
             let deck = decksArray.filter(item => item.id === id)[0];
             return new Monster(this.ctx, newMonster.id, newMonster.name, newMonster.life, newMonster.src, deck);
+        });
+    },
+    drawStartScreen: () => {
+        let startPointX = (this.width - 185 * this.heroArray.length)/2;
+        let startPointY = (this.height - 250)/3;
+        this.heroArray.forEach(hero => {
+            hero.drawHero(startPointX,startPointY);
         });
     }
 }

@@ -4,6 +4,6 @@ class Hotzone {
         this.x = x;
         this.y = y;
         this.w = w;
-        this.w = h;
+        this.h = h;
     }
 }

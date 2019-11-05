@@ -202,7 +202,7 @@ const deckCollection = [{
     {
         id: 4,
         name: "Rubber Duck",
-        cards: [1, 1, 1, 2]
+        cards: [13, 14, 16]
     },
     {
         id: 5,
@@ -263,6 +263,120 @@ const deckCollection = [{
         id: 16,
         name: "Scary Spider",
         cards: [1, 25, 20, 6, 6]
+    }
+
+];
+
+const heroes = [{
+    id: 1,
+    name: "Warrior",
+    life: 5,
+    deckId: 1,
+    src: "./assets/img/blue.svg"
+}, {
+    id: 2,
+    name: "Sorcerer",
+    life: 5,
+    cdeckId: 2,
+    src: "./assets/img/blue.svg"
+}, {
+    id: 3,
+    name: "Rogue",
+    life: 5,
+    deckId: 3,
+    src: "./assets/img/blue.svg"
+}];
+
+const monsters = [{
+        id: 4,
+        name: "Rubber Duck",
+        life: 4,
+        deckId: 4,
+        src: "./assets/img/blue.svg"
+    },
+    {
+        id: 5,
+        name: "Albino Goblin",
+        life: 8,
+        deckId: 5,
+        src: "./assets/img/blue.svg"
+    },
+    {
+        id: 6,
+        name: "Lazy Bat",
+        life: 6,
+        deckId: 6,
+        src: "./assets/img/blue.svg"
+    },
+    {
+        id: 7,
+        name: "Horrid Eel",
+        life: 6,
+        deckId: 7,
+        src: "./assets/img/blue.svg"
+    },
+    {
+        id: 8,
+        name: "Fire Imp",
+        life: 5,
+        deckId: 8,
+        src: "./assets/img/blue.svg"
+    },
+    {
+        id: 9,
+        name: "Frenzied Goblin",
+        life: 6,
+        deckId: 9,
+        src: "./assets/img/blue.svg"
+    },
+    {
+        id: 10,
+        name: "Ugly Spider",
+        life: 4,
+        deckId: 10,
+        src: "./assets/img/blue.svg"
+    },
+    {
+        id: 11,
+        name: "Goblin",
+        life: 6,
+        deckId: 11,
+        src: "./assets/img/blue.svg"
+    },
+    {
+        id: 12,
+        name: "Bubbly Ozee",
+        life: 7,
+        deckId: 12,
+        src: "./assets/img/blue.svg"
+    },
+    {
+        id: 13,
+        name: "Leggy Spider",
+        life: 7,
+        deckId: 13,
+        src: "./assets/img/blue.svg"
+    },
+    {
+        id: 14,
+        name: "Rat",
+        life: 5,
+        deckId: 14,
+        src: "./assets/img/blue.svg"
+    },
+    {
+        id: 15,
+        name: "Plague Rat",
+        life: 6,
+        deckId: 15,
+        src: "./assets/img/blue.svg"
+    },
+    {
+        id: 16,
+        name: "Scary Spider",
+        life: 6,
+        deckId: 16,
+        src: "./assets/img/blue.svg"
     }
 
 ];

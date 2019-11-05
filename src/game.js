@@ -15,8 +15,10 @@ const game = {
         window.addEventListener("resize", (e) => game.updateCanvasSize());
         game.updateCanvasSize();
         game.createDecks();
-        //game.createHeroes();
-        //game.createMonsters();
+        game.createHeroes(1,2,3);
+        game.createMonsters(4,5,6,7,8,9,10,11,12,13,14,15,16);
+
+        //---->
     },
 
     updateCanvasSize: () => {
@@ -34,5 +36,22 @@ const game = {
             })
             return new Deck(deck.id,deck.name,cardsArray);
         });
+    },
+
+    createHeroes: (...id) => {
+        heroArray = id.map(id => {
+            let newHero = heroes.filter(item=>item.id===id)[0];
+            let deckRef = decksArray.filter(item=>item.id===id)[0];
+            return new Hero(this.ctx,newHero.id,newHero.name,newHero.life,newHero.src,deckRef);
+        });
+    },
+
+    createMonsters: (...id) => {
+        monsterArray = id.map(id => {
+            let newMonster = monsters.filter(item=>item.id===id)[0];
+            let deck = decksArray.filter(item=>item.id===id)[0];
+            return new Monster(this.ctx,newMonster.id,newMonster.name,newMonster.life,newMonster.src,deck);
+        });
+        console.log(monsterArray);
     }
 }

@@ -37,7 +37,7 @@ const game = {
         game.decksArray = deckCollection.map(deck => {
             let cardsArray = deck.cards.map(id => {
                 let newCard = cards.filter(item => item.id === id)[0];
-                return new Card(game.ctx, newCard.name, newCard.src, newCard.icons);
+                return new Card(game.ctx, newCard.id, newCard.name, newCard.src, newCard.icons);
             })
             return new Deck(deck.id, deck.name, cardsArray);
         });
@@ -91,7 +91,7 @@ const game = {
         let clickedZone = game.clickScene(game.scene, event.x, event.y);
         if (clickedZone.length > 0) {
             window.removeEventListener("click", game.clickOnCombat);
-            //game.doFigth(clickedZone[0].id);
+            game.arena.doFigth(clickedZone[0].id);
         }
     },
     clickScene: (currentScene, x, y) => {

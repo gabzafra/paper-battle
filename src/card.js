@@ -1,5 +1,6 @@
 class Card {
-    constructor(ctx, text, imgSrc, tagList) {
+    constructor(ctx, id, text, imgSrc, tagList) {
+        this.id = id;
         this.ctx = ctx;
         this.text = text;
         this.img = new Image();

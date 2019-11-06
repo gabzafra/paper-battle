@@ -32,7 +32,7 @@ class Arena {
         this.ctx.strokeRect((this.w - 1365) / 2 + 215, 20, 935, 650);
         this.drawLegend();
         this.ctx.lineWidth = 1;
-        this.hero.drawHero(40, 410);
+        this.hero.drawHero((this.w - 1365) / 2, 410);
         this.monster.drawMonster((this.w - 1365) / 2 + 1185, 410);
         this.heroHand.forEach((card, idx) => {
             card.drawCardInPosition(handOffset, this.handStartY);

@@ -174,8 +174,8 @@ class Arena {
 
         this.heroDiscardPile.push(heroCard);
         this.monsterDiscardPile.push(monsterCard);
-
-        console.log(heroStats.life, monsterStats.life);
+        console.log(this.heroHand,heroStats, monsterStats);
+        //monster combat
 
         if (monsterStats.breaker) {
             heroStats.blockP = heroStats.blockM = heroStats.blockA = 0;
@@ -223,7 +223,7 @@ class Arena {
                 }
             }
         }
-        console.log(monsterStats.pDmg + monsterStats.mDmg);
+
         heroStats.life -= monsterStats.pDmg + monsterStats.mDmg;
         if (heroStats.touched) {
             if (monsterStats.discard) {
@@ -240,6 +240,75 @@ class Arena {
                 monsterStats.life += monsterStats.pDmg + monsterStats.mDmg;
             }
         }
-        console.log(heroStats.life, monsterStats.life);
+
+        //hero combat
+
+        if (heroStats.breaker) {
+            monsterStats.blockP = monsterStats.blockM = monsterStats.blockA = 0;
+        }
+        if (heroStats.furyLoss > 0) {
+            heroStats.life--;
+        }
+        if (heroStats.pDmg > 0) {
+            let fullArmor = monsterStats.blockP + monsterStats.blockA;
+            if (heroStats.pDmg > fullArmor) {
+                heroStats.pDmg -= fullArmor;
+                monsterStats.blockP = 0;
+                monsterStats.blockA = 0;
+                monsterStats.touched = true;
+            } else {
+                if (heroStats.pDmg > monsterStats.blockP) {
+                    heroStats.pDmg -= monsterStats.blockP;
+                    monsterStats.blockP = 0;
+                    let carry = heroStats.pDmg;
+                    heroStats.pDmg -= monsterStats.blockA;
+                    monsterStats.blockA -= carry;
+                } else {
+                    heroStats.pDmg = 0;
+                    monsterStats.blockP = 0;
+                }
+            }
+        }
+        if (heroStats.mDmg > 0) {
+            let fullArmor = monsterStats.blockM + monsterStats.blockA;
+            if (heroStats.mDmg > fullArmor) {
+                heroStats.mDmg -= fullArmor;
+                monsterStats.blockM = 0;
+                monsterStats.blockA = 0;
+                monsterStats.touched = true;
+            } else {
+                if (heroStats.mDmg > monsterStats.blockM) {
+                    heroStats.mDmg -= monsterStats.blockM;
+                    monsterStats.blockM = 0;
+                    let carry = heroStats.mDmg;
+                    heroStats.mDmg -= monsterStats.blockA;
+                    monsterStats.blockA -= carry;
+                } else {
+                    heroStats.mDmg = 0;
+                    monsterStats.blockM = 0;
+                }
+            }
+        }
+
+        monsterStats.life -= heroStats.pDmg + heroStats.mDmg;
+        if (monsterStats.touched) {
+            if (heroStats.healing) {
+                heroStats.life += heroStats.pDmg + heroStats.mDmg;
+            }
+        }
+
+        if(heroStats.draw && this.heroHand.length < 5){
+             this.heroDraw();
+        }
+
+        console.log(this.heroHand, heroStats, monsterStats);
+    }
+
+    heroDraw() {
+        console.log("+1 cartita pal heroe");
+    }
+
+    monsterDraw() {
+
     }
 }

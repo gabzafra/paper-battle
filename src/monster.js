@@ -21,9 +21,9 @@ class Monster {
             this.ctx.stroke();
             this.ctx.rect(this.posX + 10, this.posY + 17, this.width - 20, this.height - 27);
             this.ctx.stroke();
-            this.img.onload = () => this.ctx.drawImage(this.img, this.posX + 10, this.posY + 17, this.width - 20, this.height - 27);
+            this.ctx.drawImage(this.img, this.posX + 10, this.posY + 17, this.width - 20, this.height - 27);
             this.ctx.beginPath();
-            this.ctx.font = '13px Arial';
+            this.ctx.font = '13px MedievalSharp';
             this.ctx.textAlign = 'center';
             this.ctx.fillStyle = '#000';
             this.ctx.fillText(this.name, this.posX + this.width / 2, this.posY + 14);

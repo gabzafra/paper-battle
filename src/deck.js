@@ -17,4 +17,16 @@ class Deck {
             this.cardsArray[randomIndex] = temporaryValue;
         }
     }
+
+    drawInitialHand(){
+        return this.cardsArray.splice(0,3);
+    }
+
+    drawCard(){
+        return this.cardsArray.splice(0,1)[0];
+    }
+
+    addCard(card){
+        this.cardsArray.push(card);
+    }
 }

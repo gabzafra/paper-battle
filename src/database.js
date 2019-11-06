@@ -1,33 +1,43 @@
 const icons = [{
     name: "fist",
-    src: "./assets/img/fist.svg"
+    src: "./assets/img/fist.svg",
+    text: "Deals one physical damage"
 }, {
     name: "magic",
-    src: "./assets/img/magic.svg"
+    src: "./assets/img/magic.svg",
+    text: "Deals one magic damage"
 }, {
     name: "blockM",
-    src: "./assets/img/blockM.svg"
+    src: "./assets/img/blockM.svg",
+    text: "Blocks one magic damage"
 }, {
     name: "blockF",
-    src: "./assets/img/blockF.svg"
+    src: "./assets/img/blockF.svg",
+    text: "Blocks one physical damage"
 }, {
     name: "blockA",
-    src: "./assets/img/blockA.svg"
+    src: "./assets/img/blockA.svg",
+    text: "Blocks one damage"
 }, {
     name: "draw",
-    src: "./assets/img/draw.svg"
+    src: "./assets/img/draw.svg",
+    text: "Draw one card"
 }, {
     name: "breaker",
-    src: "./assets/img/breaker.svg"
+    src: "./assets/img/breaker.svg",
+    text: "Damage can't be blocked"
 }, {
     name: "drain",
-    src: "./assets/img/drain.svg"
+    src: "./assets/img/drain.svg",
+    text: "Each unblocked damage heals"
 }, {
     name: "dmgself",
-    src: "./assets/img/dmgself.svg"
+    src: "./assets/img/dmgself.svg",
+    text: "You will lose one life"
 }, {
     name: "discard",
-    src: "./assets/img/discard.svg"
+    src: "./assets/img/discard.svg",
+    text: "If not blocked discard a card"
 }];
 
 const cards = [{

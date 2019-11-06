@@ -23,9 +23,9 @@ class Card {
         this.ctx.stroke();
         this.ctx.rect(this.posX + 10, this.posY + 17, this.width - 20, this.height / 2 - 5);
         this.ctx.stroke();
-        this.img.onload = () => this.ctx.drawImage(this.img, this.posX + 10, this.posY + 17, this.width - 20, this.height / 2 - 5);
+        this.ctx.drawImage(this.img, this.posX + 10, this.posY + 17, this.width - 20, this.height / 2 - 5);
         this.ctx.beginPath();
-        this.ctx.font = '13px Arial';
+        this.ctx.font = '13px MedievalSharp';
         this.ctx.textAlign = 'center';
         this.ctx.fillStyle = '#000';
         this.ctx.fillText(this.text, this.posX + this.width / 2, this.posY + 14);
@@ -37,23 +37,10 @@ class Card {
     drawIcons() {
 
         this.iconGrid.forEach(icon => {
-            icon.img.onload = () => {
                 this.ctx.save();
                 this.ctx.translate(15 + icon.xOfset, this.height * .60 + icon.yOfset);
-                this.ctx.beginPath();
-                this.ctx.arc(this.posX + 15, this.posY + 15, 15, 0, Math.PI * 2, true);
-                this.ctx.closePath();
-                this.ctx.clip();
-
                 this.ctx.drawImage(icon.img, this.posX, this.posY, 30, 30);
-
-                this.ctx.beginPath();
-                this.ctx.arc(this.posX, this.posY, 15, 0, Math.PI * 2, true);
-                this.ctx.clip();
-                this.ctx.closePath();
-
                 this.ctx.restore();
-            }
         });
 
 

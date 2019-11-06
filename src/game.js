@@ -11,6 +11,7 @@ const game = {
     decksArray: [],
     sceneZones: [],
     scene: undefined,
+    arena : undefined,
     init: () => {
         game.canvas = document.getElementById("canvas");
         game.ctx = game.canvas.getContext('2d');
@@ -62,12 +63,6 @@ const game = {
         let idCounter = 1;
         let startPointX = (game.width - 185 * game.heroArray.length) / 2;
         let startPointY = (game.height - 250) / 3;
-        game.heroArray.forEach(hero => {
-            hero.drawHero(startPointX, startPointY);
-            game.sceneZones.push(new Hotzone(idCounter, startPointX, startPointY, 175, 250));
-            idCounter++;
-            startPointX += 185;
-        });
         game.ctx.beginPath();
         game.ctx.lineWidth = 5;
         game.ctx.strokeStyle = '#666';
@@ -77,14 +72,26 @@ const game = {
         game.ctx.strokeText("Choose Your Hero", game.width / 2, game.height / 2 + 150);
         game.ctx.fillText("Choose Your Hero", game.width / 2, game.height / 2 + 150);
         game.ctx.closePath();
+        game.heroArray.forEach(hero => {
+            hero.drawStartHero(startPointX, startPointY);
+            game.sceneZones.push(new Hotzone(idCounter, startPointX, startPointY, 175, 250));
+            idCounter++;
+            startPointX += 185;
+        });
     },
     clickOnStart: (event) => {
         let clickedZone = game.clickScene(game.scene, event.x, event.y);
         if (clickedZone.length > 0) {
             window.removeEventListener("click", game.clickOnStart);
-            console.log(game.heroArray.filter(hero => hero.id === clickedZone[0].id));
-            game.startCombat(clickedZone.id);
+            game.startCombat(game.heroArray.filter(hero => hero.id === clickedZone[0].id)[0]);
             game.background.changeBackground(game.canvas);
+        }
+    },
+    clickOnCombat: (event) => {
+        let clickedZone = game.clickScene(game.scene, event.x, event.y);
+        if (clickedZone.length > 0) {
+            window.removeEventListener("click", game.clickOnCombat);
+            //game.doFigth(clickedZone[0].id);
         }
     },
     clickScene: (currentScene, x, y) => {
@@ -93,7 +100,7 @@ const game = {
                 return game.sceneZones.filter(zone => zone.haveCollided(x, y));
                 break;
             case "combat":
-                //TODO cuando click en pantalla combat
+                return game.sceneZones.filter(zone => zone.haveCollided(x, y));
                 break;
             case "select":
                 //TODO cuando click en pantalla elegir carta
@@ -101,9 +108,10 @@ const game = {
         }
     },
     startCombat: (clickedHero) => {
-        game.ctx.clearRect(0, 0, game.width, game.height);
-
-        //------------------>
+        game.scene = "combat";
+        game.arena = new Arena(game.ctx, clickedHero, game.monsterArray,game.width,game.height);
+        game.sceneZones = game.arena.drawArena();
+        window.addEventListener("click", game.clickOnCombat);
     }
 
 }

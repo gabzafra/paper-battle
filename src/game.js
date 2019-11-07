@@ -13,6 +13,9 @@ const game = {
     sceneZones: [],
     scene: undefined,
     arena: undefined,
+    lastHero: undefined,
+    lastMonster: undefined,
+    prize: undefined,
     init: (assets) => {
         game.assets = assets;
         game.background = new Background(game.assets.backgrounds);
@@ -97,6 +100,18 @@ const game = {
             game.arena.doFigth(clickedZone[0].id);
         }
     },
+    clickOnSelect: (event) => {
+        let clickedZone = game.clickScene(event.x, event.y);
+        if (clickedZone.length > 0) {
+            window.removeEventListener("click", game.clickOnSelect);
+            if (clickedZone[0].id === 1) {
+                game.lastHero.deck.addCard(game.prize);
+            }
+            game.background.changeBackground(game.canvas);
+            game.sceneZones = game.arena.newMonsterFight();
+            window.addEventListener("click", game.clickOnCombat);
+        }
+    },
     clickScene: (x, y) => {
         return game.sceneZones.filter(zone => zone.haveCollided(x, y));
     },
@@ -109,7 +124,6 @@ const game = {
 
     nextRound: () => {
         game.sceneZones = game.arena.drawArena();
-        console.log(game.sceneZones);
         window.addEventListener("click", game.clickOnCombat);
     },
 
@@ -120,23 +134,41 @@ const game = {
         game.ctx.font = '80px MedievalSharp';
         game.ctx.textAlign = 'center';
         game.ctx.fillStyle = '#fff';
-        game.ctx.fillText(`You Die`, game.width/2, game.height/2);
+        game.ctx.fillText(`You Die`, game.width / 2, game.height / 2);
         game.ctx.closePath();
 
     },
 
-    startSelect: (hero,monster) => {
+    startSelect: (hero, monster) => {
+        game.lastHero = hero;
+        game.lastMonster = monster;
         let prizeCards = monster.deck.cardsArray.filter(card => card.tagList.indexOf(`discard`) === -1);
-        let prize = prizeCards[game.randomInt(0,prizeCards.length-1)];
+        game.prize = prizeCards[game.randomInt(0, prizeCards.length - 1)];
         game.ctx.fillStyle = `#000`;
         game.ctx.fillRect(0, 0, game.width, game.height);
         game.ctx.beginPath();
         game.ctx.font = '35px MedievalSharp';
         game.ctx.textAlign = 'center';
         game.ctx.fillStyle = '#fff';
-        game.ctx.fillText(`Do you want to add this card to your deck?`, game.width/2, game.height/4);
+        game.ctx.fillText(`Do you want to add this card to your deck?`, game.width / 2, game.height / 4);
         game.ctx.closePath();
-        prize.drawCardInPosition(game.width/2 - 85, game.height/2 - 125);
+        game.prize.drawCardInPosition(game.width / 2 - 85, game.height / 2 - 125);
+        game.ctx.beginPath();
+        game.ctx.font = '35px MedievalSharp';
+        game.ctx.textAlign = 'center';
+        game.ctx.fillStyle = '#fff';
+        game.ctx.fillText(`Yes`, game.width / 2 - 120, game.height / 2 + 150);
+        game.ctx.closePath();
+        game.ctx.beginPath();
+        game.ctx.font = '35px MedievalSharp';
+        game.ctx.textAlign = 'center';
+        game.ctx.fillStyle = '#fff';
+        game.ctx.fillText(`No`, game.width / 2 + 120, game.height / 2 + 150);
+        game.ctx.closePath();
+        game.sceneZones = [];
+        game.sceneZones.push(new Hotzone(0, game.width / 2 + 93, game.height / 2 + 120, 55, 40));
+        game.sceneZones.push(new Hotzone(1, game.width / 2 - 160, game.height / 2 + 120, 75, 40));
+        window.addEventListener("click", game.clickOnSelect);
     },
 
     randomInt: (min, max) => {

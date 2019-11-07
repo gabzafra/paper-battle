@@ -18,19 +18,19 @@ class Deck {
         }
     }
 
-    drawInitialHand(){
-        return this.cardsArray.splice(0,3);
+    drawInitialHand() {
+        return this.cardsArray.splice(0, 3);
     }
 
-    drawCard(){
-        return this.cardsArray.splice(0,1)[0];
+    drawCard() {
+        return this.cardsArray.splice(0, 1)[0];
     }
 
-    addCard(card){
+    addCard(card) {
         this.cardsArray.push(card);
     }
 
-    restoreDeck(discarded){
+    restoreDeck(discarded) {
         this.cardsArray = [...discarded];
         this.shuffleCards();
     }

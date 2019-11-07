@@ -5,6 +5,7 @@ class Arena {
         this.h = gameHeight;
         this.hero = hero;
         this.heroCurrentLife = this.hero.life;
+        this.monstersArray = monstersArray;
         this.monster = monstersArray[this.randomInt(0, monstersArray.length - 1)];
         this.monsterCurrentLife = this.monster.life;
         this.heroHand = this.hero.deck.drawInitialHand();
@@ -24,6 +25,17 @@ class Arena {
     }
     randomInt(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
+    newMonsterFight(){
+        this.heroCurrentLife = this.hero.life;
+        this.monster = this.monstersArray[this.randomInt(0, this.monstersArray.length - 1)];
+        this.monsterCurrentLife = this.monster.life;
+        this.heroHand = this.hero.deck.drawInitialHand();
+        this.monsterCard = this.monster.deck.drawCard();
+        this.heroDiscardPile = [];
+        this.monsterDiscardPile = [];
+        return this.drawArena();
     }
     drawArena() {
         let handOffset = this.handStartX;

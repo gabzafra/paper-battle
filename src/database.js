@@ -229,7 +229,7 @@ const deckCollection = [{
     {
         id: 5,
         name: "Albino Goblin",
-        cards: [17, 18, 19, 15, 13]
+        cards: [17, 18, 19, 15, 13, 16]
     },
     {
         id: 6,
@@ -239,7 +239,7 @@ const deckCollection = [{
     {
         id: 7,
         name: "Horrid Eel",
-        cards: [21, 5, 22, 17, 9, 1, 2, 19, 23]
+        cards: [21, 5, 22, 17, 9, 1, 2, 19, 23, 16]
     },
     {
         id: 8,
@@ -249,12 +249,12 @@ const deckCollection = [{
     {
         id: 9,
         name: "Frenzied Goblin",
-        cards: [19, 15, 1, 25]
+        cards: [19, 15, 1, 25, 1]
     },
     {
         id: 10,
         name: "Ugly Spider",
-        cards: [20, 6, 6, 11, 11]
+        cards: [20, 6, 6, 11, 11, 1]
     },
     {
         id: 11,
@@ -269,7 +269,7 @@ const deckCollection = [{
     {
         id: 13,
         name: "Leggy Spider",
-        cards: [19, 2, 23, 20, 6]
+        cards: [19, 2, 23, 20, 6, 2]
     },
     {
         id: 14,
@@ -279,7 +279,7 @@ const deckCollection = [{
     {
         id: 15,
         name: "Plague Rat",
-        cards: [2, 19, 11, 11]
+        cards: [2, 19, 11, 11, 16]
     },
     {
         id: 16,

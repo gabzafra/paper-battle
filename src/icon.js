@@ -1,8 +1,7 @@
 class Icon {
-    constructor(name, imgSrc, xOfset, yOfset) {
+    constructor(name, xOfset, yOfset) {
         this.name = name;
-        this.img = new Image();
-        this.img.src = imgSrc;
+        this.img = game.assets.icons[this.name];
         this.xOfset = xOfset;
         this.yOfset = yOfset;
     }

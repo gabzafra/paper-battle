@@ -16,7 +16,6 @@ const game = {
     init: (assets) => {
         game.assets = assets;
         game.background = new Background(game.assets.backgrounds);
-        console.log(game.assets);
         game.canvas = document.getElementById("canvas");
         game.ctx = game.canvas.getContext('2d');
         window.addEventListener("resize", (e) => game.updateCanvasSize());
@@ -41,7 +40,7 @@ const game = {
         game.decksArray = deckCollection.map(deck => {
             let cardsArray = deck.cards.map(id => {
                 let newCard = cards.filter(item => item.id === id)[0];
-                return new Card(game.ctx, newCard.id, newCard.name, newCard.src, newCard.icons);
+                return new Card(game.ctx, newCard.id, newCard.name, newCard.icons);
             })
             return new Deck(deck.id, deck.name, cardsArray);
         });
@@ -51,7 +50,7 @@ const game = {
         game.heroArray = id.map(id => {
             let newHero = heroes.filter(item => item.id === id)[0];
             let deckRef = game.decksArray.filter(item => item.id === id)[0];
-            return new Hero(game.ctx, newHero.id, newHero.name, newHero.life, newHero.src, deckRef);
+            return new Hero(game.ctx, newHero.id, newHero.name, newHero.life, deckRef);
         });
 
     },
@@ -60,7 +59,7 @@ const game = {
         game.monsterArray = id.map(id => {
             let newMonster = monsters.filter(item => item.id === id)[0];
             let deck = game.decksArray.filter(item => item.id === id)[0];
-            return new Monster(game.ctx, newMonster.id, newMonster.name, newMonster.life, newMonster.src, deck);
+            return new Monster(game.ctx, newMonster.id, newMonster.name, newMonster.life, deck);
         });
     },
     drawStartScreen: () => {
@@ -113,7 +112,7 @@ const game = {
     },
     startCombat: (clickedHero) => {
         game.scene = "combat";
-        game.arena = new Arena(game.ctx, assets, clickedHero, game.monsterArray,game.width,game.height);
+        game.arena = new Arena(game.ctx, clickedHero, game.monsterArray,game.width,game.height);
         game.sceneZones = game.arena.drawArena();
         window.addEventListener("click", game.clickOnCombat);
     }

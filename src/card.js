@@ -1,10 +1,9 @@
 class Card {
-    constructor(ctx, id, text, imgSrc, tagList) {
+    constructor(ctx, id, text, tagList) {
         this.id = id;
         this.ctx = ctx;
         this.text = text;
-        this.img = new Image();
-        this.img.src = imgSrc;
+        this.img = game.assets.cards[this.text];
         this.tagList = tagList;
         this.width = 175;
         this.height = 250;
@@ -136,7 +135,7 @@ class Card {
         this.iconGrid = this.tagList.map(name => {
             let icon = icons.filter(elem => elem.name === name);
             let offsetPair = offSetPairs.shift();
-            return new Icon(icon[0].name, icon[0].src, offsetPair.x, offsetPair.y);
+            return new Icon(icon[0].name, offsetPair.x, offsetPair.y);
         });
     }
 }

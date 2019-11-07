@@ -1,10 +1,9 @@
 class Hero {
-    constructor(ctx, id, name, life, imgSrc, deckRef) {
+    constructor(ctx, id, name, life, deckRef) {
         this.ctx = ctx;
         this.id = id;
         this.name = name;
-        this.img = new Image();
-        this.img.src = imgSrc;
+        this.img = game.assets.heroes[this.name];
         this.deck = deckRef;
         this.life = life;
         this.width = 175;
@@ -25,9 +24,7 @@ class Hero {
         this.ctx.stroke();
         this.ctx.rect(this.posX + 10, this.posY + 17, this.width - 20, this.height - 27);
         this.ctx.stroke();
-        this.img.onload = () => {
-            this.ctx.drawImage(this.img, this.posX + 10, this.posY + 17, this.width - 20, this.height - 27)
-        };
+        this.ctx.drawImage(this.img, this.posX + 10, this.posY + 17, this.width - 20, this.height - 27)
         this.ctx.beginPath();
         this.ctx.font = '13px MedievalSharp';
         this.ctx.textAlign = 'center';

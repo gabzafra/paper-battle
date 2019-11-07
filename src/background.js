@@ -1,7 +1,6 @@
 class Background {
     constructor(arr) {
         this.imageArray = arr;
-        console.log(arr);
     }
 
     changeBackground(elemDOM) {

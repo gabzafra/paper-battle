@@ -1,10 +1,9 @@
 class Monster {
-    constructor(ctx, id, name, life, imgSrc, deck) {
+    constructor(ctx, id, name, life, deck) {
         this.ctx = ctx;
         this.id = id;
         this.name = name;
-        this.img = new Image();
-        this.img.src = imgSrc;
+        this.img = game.assets.monsters[this.name];
         this.deck = deck;
         this.life = life;
         this.width = 175;

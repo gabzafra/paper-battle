@@ -53,25 +53,3 @@ function preloadImages(images, collection, cb) {
         img.onload = callback;
     }
 }
-
-
-/*
-function preloadImages() {
-    let assets = {
-        icons: [],
-        cards: [],
-        heroes: [],
-        monsters: [],
-        backgrounds: []
-    };
-    let assetsCount = 
-    icons.forEach(icon => {
-        let img = new Image();
-        img.src = icon.src;
-        img.onload = () => {
-            assets.icons.push({name:icon.name, img:img});
-        };  
-    })
-    game.init(assets);
-}
-*/

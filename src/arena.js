@@ -4,7 +4,7 @@ class Arena {
         this.w = gameWidth;
         this.h = gameHeight;
         this.hero = hero;
-        this.heroCurrenLife = this.hero.life;
+        this.heroCurrentLife = this.hero.life;
         this.monster = monstersArray[this.randomInt(0, monstersArray.length - 1)];
         this.monsterCurrentLife = this.monster.life;
         this.heroHand = this.hero.deck.drawInitialHand();
@@ -82,7 +82,7 @@ class Arena {
 
     drawLifeMarkers() {
         let offset = 0;
-        Array(this.heroCurrenLife).fill().map(() => {
+        Array(this.heroCurrentLife).fill().map(() => {
             this.ctx.drawImage(this.heart, ((this.w - 1365) / 2) + 145, 370 - offset, 30, 30);
             offset += 40;
         });
@@ -94,7 +94,7 @@ class Arena {
     }
     doFigth(id) {
         let monsterStats = {
-            life: this.monster.life,
+            life: this.monsterCurrentLife,
             breaker: false,
             furyLoss: 0,
             pDmg: 0,
@@ -107,7 +107,7 @@ class Arena {
             touched: false
         };
         let heroStats = {
-            life: this.hero.life,
+            life: this.heroCurrentLife,
             breaker: false,
             draw: false,
             furyLoss: 0,
@@ -312,22 +312,43 @@ class Arena {
             }
         }
 
-        if (heroStats.draw && this.heroHand.length < 5) {
+        if (heroStats.draw) {
             this.heroDraw();
         }
 
         this.monsterCurrentLife = monsterStats.life;
-        this.heroCurrenLife = heroStats.life;
+        this.heroCurrentLife = heroStats.life;
+        this.monsterDraw();
+        this.heroDraw();
 
-        this.monsterCard = this.monster.deck.drawCard();
-        this.drawArena();
+        setTimeout(() => {
+            if (game.arena.heroCurrentLife <= 0) {
+                setTimeout(()=>game.gameOver(),1000);
+            } else if (game.arena.monsterCurrentLife <= 0) {
+                this.hero.deck.restoreDeck(this.heroHand);
+                this.hero.deck.restoreDeck(this.heroDiscardPile);
+                this.monster.deck.restoreDeck(this.monsterDiscardPile);
+                game.startSelect(this.hero,this.monster);
+            } else {
+                game.nextRound();
+            }
+        }, 1000);
+
     }
 
     heroDraw() {
-        console.log("+1 cartita pal heroe");
+        if (this.hero.deck.cardsArray.length === 0) {
+            this.hero.deck.restoreDeck(this.heroDiscardPile);
+        }
+        if (this.heroHand.length < 5) {
+            this.heroHand.push(this.hero.deck.drawCard());
+        }
     }
 
     monsterDraw() {
-
+        if (this.monster.deck.cardsArray.length === 0) {
+            this.monster.deck.restoreDeck(this.monsterDiscardPile);
+        }
+        this.monsterCard = this.monster.deck.drawCard();
     }
 }

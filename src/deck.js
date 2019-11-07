@@ -29,4 +29,9 @@ class Deck {
     addCard(card){
         this.cardsArray.push(card);
     }
+
+    restoreDeck(discarded){
+        this.cardsArray = [...discarded];
+        this.shuffleCards();
+    }
 }

@@ -12,7 +12,7 @@ const game = {
     decksArray: [],
     sceneZones: [],
     scene: undefined,
-    arena : undefined,
+    arena: undefined,
     init: (assets) => {
         game.assets = assets;
         game.background = new Background(game.assets.backgrounds);
@@ -83,7 +83,7 @@ const game = {
         });
     },
     clickOnStart: (event) => {
-        let clickedZone = game.clickScene(game.scene, event.x, event.y);
+        let clickedZone = game.clickScene(event.x, event.y);
         if (clickedZone.length > 0) {
             window.removeEventListener("click", game.clickOnStart);
             game.startCombat(game.heroArray.filter(hero => hero.id === clickedZone[0].id)[0]);
@@ -91,30 +91,58 @@ const game = {
         }
     },
     clickOnCombat: (event) => {
-        let clickedZone = game.clickScene(game.scene, event.x, event.y);
+        let clickedZone = game.clickScene(event.x, event.y);
         if (clickedZone.length > 0) {
             window.removeEventListener("click", game.clickOnCombat);
             game.arena.doFigth(clickedZone[0].id);
         }
     },
-    clickScene: (currentScene, x, y) => {
-        switch (currentScene) {
-            case "start":
-                return game.sceneZones.filter(zone => zone.haveCollided(x, y));
-                break;
-            case "combat":
-                return game.sceneZones.filter(zone => zone.haveCollided(x, y));
-                break;
-            case "select":
-                //TODO cuando click en pantalla elegir carta
-                break;
-        }
+    clickScene: (x, y) => {
+        return game.sceneZones.filter(zone => zone.haveCollided(x, y));
     },
     startCombat: (clickedHero) => {
         game.scene = "combat";
-        game.arena = new Arena(game.ctx, clickedHero, game.monsterArray,game.width,game.height);
+        game.arena = new Arena(game.ctx, clickedHero, game.monsterArray, game.width, game.height);
         game.sceneZones = game.arena.drawArena();
         window.addEventListener("click", game.clickOnCombat);
+    },
+
+    nextRound: () => {
+        game.sceneZones = game.arena.drawArena();
+        console.log(game.sceneZones);
+        window.addEventListener("click", game.clickOnCombat);
+    },
+
+    gameOver: () => {
+        game.ctx.fillStyle = `#000`;
+        game.ctx.fillRect(0, 0, game.width, game.height);
+        game.ctx.beginPath();
+        game.ctx.font = '80px MedievalSharp';
+        game.ctx.textAlign = 'center';
+        game.ctx.fillStyle = '#fff';
+        game.ctx.fillText(`You Die`, game.width/2, game.height/2);
+        game.ctx.closePath();
+
+    },
+
+    startSelect: (hero,monster) => {
+        let prizeCards = monster.deck.cardsArray.filter(card => card.tagList.indexOf(`discard`) === -1);
+        let prize = prizeCards[game.randomInt(0,prizeCards.length-1)];
+        game.ctx.fillStyle = `#000`;
+        game.ctx.fillRect(0, 0, game.width, game.height);
+        game.ctx.beginPath();
+        game.ctx.font = '35px MedievalSharp';
+        game.ctx.textAlign = 'center';
+        game.ctx.fillStyle = '#fff';
+        game.ctx.fillText(`Do you want to add this card to your deck?`, game.width/2, game.height/4);
+        game.ctx.closePath();
+        prize.drawCardInPosition(game.width/2 - 85, game.height/2 - 125);
+    },
+
+    randomInt: (min, max) => {
+        return Math.floor(Math.random() * (max - min + 1) + min);
     }
+
+
 
 }

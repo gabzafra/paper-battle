@@ -1,18 +1,22 @@
 const game = {
+    assets: undefined,
     canvas: undefined,
     ctx: undefined,
     width: undefined,
     height: undefined,
     fps: 60,
     framesCounter: 0,
-    background: new Background(backgrounds),
+    background: undefined,
     heroArray: [],
     monsterArray: [],
     decksArray: [],
     sceneZones: [],
     scene: undefined,
     arena : undefined,
-    init: () => {
+    init: (assets) => {
+        game.assets = assets;
+        game.background = new Background(game.assets.backgrounds);
+        console.log(game.assets);
         game.canvas = document.getElementById("canvas");
         game.ctx = game.canvas.getContext('2d');
         window.addEventListener("resize", (e) => game.updateCanvasSize());
@@ -109,7 +113,7 @@ const game = {
     },
     startCombat: (clickedHero) => {
         game.scene = "combat";
-        game.arena = new Arena(game.ctx, clickedHero, game.monsterArray,game.width,game.height);
+        game.arena = new Arena(game.ctx, assets, clickedHero, game.monsterArray,game.width,game.height);
         game.sceneZones = game.arena.drawArena();
         window.addEventListener("click", game.clickOnCombat);
     }

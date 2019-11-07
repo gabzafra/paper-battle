@@ -1,43 +1,58 @@
 const icons = [{
+    id: 1,
     name: "fist",
     src: "./assets/img/fist.svg",
     text: "Deals one physical damage"
 }, {
+    id: 2,
     name: "magic",
     src: "./assets/img/magic.svg",
     text: "Deals one magic damage"
 }, {
+    id: 3,
     name: "blockM",
     src: "./assets/img/blockM.svg",
     text: "Blocks one magic damage"
 }, {
+    id: 4,
     name: "blockF",
     src: "./assets/img/blockF.svg",
     text: "Blocks one physical damage"
 }, {
+    id: 5,
     name: "blockA",
     src: "./assets/img/blockA.svg",
     text: "Blocks one damage"
 }, {
+    id: 6,
     name: "draw",
     src: "./assets/img/draw.svg",
     text: "Draw one card"
 }, {
+    id: 7,
     name: "breaker",
     src: "./assets/img/breaker.svg",
     text: "Damage can't be blocked"
 }, {
+    id: 8,
     name: "drain",
     src: "./assets/img/drain.svg",
     text: "Each unblocked damage heals"
 }, {
+    id: 9,
     name: "dmgself",
     src: "./assets/img/dmgself.svg",
     text: "You will lose one life"
 }, {
+    id: 10,
     name: "discard",
     src: "./assets/img/discard.svg",
     text: "If not blocked discard a card"
+}, {
+    id: 11,
+    name: "heart",
+    src: "./assets/img/heart.png",
+    text: "1 life point"
 }];
 
 const cards = [{
@@ -390,35 +405,46 @@ const monsters = [{
 
 const backgrounds = [{
     id: 1,
+    name: 1,
     src: "./assets/img/backgrounds/tile01sm.png"
 }, {
     id: 2,
+    name: 2,
     src: "./assets/img/backgrounds/tile02sm.png"
 }, {
     id: 3,
+    name: 3,
     src: "./assets/img/backgrounds/tile03sm.png"
 }, {
     id: 4,
+    name: 4,
     src: "./assets/img/backgrounds/tile04sm.png"
 }, {
     id: 5,
+    name: 5,
     src: "./assets/img/backgrounds/tile05sm.png"
 }, {
     id: 6,
+    name: 6,
     src: "./assets/img/backgrounds/tile06sm.png"
 }, {
     id: 7,
+    name: 7,
     src: "./assets/img/backgrounds/tile07sm.png"
 }, {
     id: 8,
+    name: 8,
     src: "./assets/img/backgrounds/tile08sm.png"
 }, {
     id: 9,
+    name: 9,
     src: "./assets/img/backgrounds/tile09sm.png"
 }, {
     id: 10,
+    name: 10,
     src: "./assets/img/backgrounds/tile10sm.png"
 }, {
     id: 11,
+    name: 11,
     src: "./assets/img/backgrounds/tile11sm.png"
 }];

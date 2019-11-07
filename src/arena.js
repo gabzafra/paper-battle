@@ -1,16 +1,19 @@
 class Arena {
-    constructor(ctx, hero, monstersArray, gameWidth, gameHeight) {
+    constructor(ctx, assets, hero, monstersArray, gameWidth, gameHeight) {
         this.ctx = ctx;
         this.w = gameWidth;
         this.h = gameHeight;
         this.hero = hero;
+        this.heroCurrenLife = this.hero.life;
         this.monster = monstersArray[this.randomInt(0, monstersArray.length - 1)];
+        this.monsterCurrentLife = this.monster.life;
         this.heroHand = this.hero.deck.drawInitialHand();
         this.monsterCard = this.monster.deck.drawCard();
         this.heroDiscardPile = [];
         this.monsterDiscardPile = [];
         this.handStartX = (this.w - 1365) / 2 + 225;
         this.handStartY = 30;
+        this.heart = assets;
         this.legendIcons = icons.map(icon => {
             let newImg = new Image();
             newImg.src = icon.src;
@@ -19,6 +22,7 @@ class Arena {
                 img: newImg
             };
         });
+        
     }
     randomInt(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
@@ -32,7 +36,7 @@ class Arena {
         this.ctx.strokeStyle = `#000`;
         this.ctx.fillRect((this.w - 1365) / 2 + 215, 20, 935, 650);
         this.ctx.strokeRect((this.w - 1365) / 2 + 215, 20, 935, 650);
-        this.drawLegend();
+        this.drawLegend();     
         this.ctx.strokeStyle = `#c35`;
         this.ctx.lineWidth = 7;
         this.ctx.strokeRect((this.w - 1365) / 2 + 965, 410, 175, 250);
@@ -47,7 +51,7 @@ class Arena {
             zonesArray.push(new Hotzone(idx, handOffset, this.handStartY, 175, 250))
             handOffset += 185;
         });
-
+        this.drawLifeMarkers(); 
         return zonesArray;
     }
     drawLegend() {
@@ -76,6 +80,34 @@ class Arena {
             x0 += 260;
             rowFlip++;
         })
+    }
+
+    drawLifeMarkers(){
+        function doIt(){
+            
+        }
+        this.heart.onload = ()=> {
+            let offset = 0;
+            Array(this.heroCurrenLife).fill().map(() => {
+                this.ctx.drawImage(this.heart, ((this.w - 1365) / 2)+145, 370 - offset, 30, 30);
+                offset+=40;
+            });
+            offset = 0;
+            Array(this.monsterCurrentLife).fill().map(() => {
+                this.ctx.drawImage(this.heart, (this.w - 1365) / 2 + 1185, 370 - offset, 30, 30);
+                offset+=40;
+            });
+        }
+        let offset = 0;
+            Array(this.heroCurrenLife).fill().map(() => {
+                this.ctx.drawImage(this.heart, ((this.w - 1365) / 2)+145, 370 - offset, 30, 30);
+                offset+=40;
+            });
+            offset = 0;
+            Array(this.monsterCurrentLife).fill().map(() => {
+                this.ctx.drawImage(this.heart, (this.w - 1365) / 2 + 1185, 370 - offset, 30, 30);
+                offset+=40;
+            });           
     }
     doFigth(id) {
         let monsterStats = {
@@ -174,7 +206,7 @@ class Arena {
 
         this.heroDiscardPile.push(heroCard);
         this.monsterDiscardPile.push(monsterCard);
-        console.log(this.heroHand,heroStats, monsterStats);
+        
         //monster combat
 
         if (monsterStats.breaker) {
@@ -301,7 +333,11 @@ class Arena {
              this.heroDraw();
         }
 
-        console.log(this.heroHand, heroStats, monsterStats);
+        this.monsterCurrentLife = monsterStats.life;
+        this.heroCurrenLife = heroStats.life;
+        
+        this.monsterCard = this.monster.deck.drawCard();
+        this.drawArena();
     }
 
     heroDraw() {

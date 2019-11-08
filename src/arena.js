@@ -82,7 +82,7 @@ class Arena {
             }
             this.ctx.drawImage(icon.img, x0, y0, 30, 30);
             this.ctx.beginPath();
-            this.ctx.font = '14px MedievalSharp';
+            this.ctx.font = '16px MedievalSharp';
             this.ctx.textAlign = 'left';
             this.ctx.fillStyle = '#000';
             this.ctx.fillText(icon.text, x0 + 40, y0 + 20);

@@ -22,14 +22,14 @@ class Hero {
         this.ctx.rect(this.posX, this.posY, this.width, this.height);
         this.ctx.fill();
         this.ctx.stroke();
-        this.ctx.rect(this.posX + 10, this.posY + 17, this.width - 20, this.height - 27);
+        this.ctx.rect(this.posX + 10, this.posY + 19, this.width - 20, this.height - 25);
         this.ctx.stroke();
-        this.ctx.drawImage(this.img, this.posX + 10, this.posY + 17, this.width - 20, this.height - 27)
+        this.ctx.drawImage(this.img, this.posX + 10, this.posY + 19, this.width - 20, this.height - 25)
         this.ctx.beginPath();
-        this.ctx.font = '13px MedievalSharp';
+        this.ctx.font = '15px MedievalSharp';
         this.ctx.textAlign = 'center';
         this.ctx.fillStyle = '#000';
-        this.ctx.fillText(this.name, this.posX + this.width / 2, this.posY + 14);
+        this.ctx.fillText(this.name, this.posX + this.width / 2, this.posY + 16);
         this.ctx.closePath();
         this.ctx.restore();
     }
@@ -42,14 +42,14 @@ class Hero {
         this.ctx.rect(this.posX, this.posY, this.width, this.height);
         this.ctx.fill();
         this.ctx.stroke();
-        this.ctx.rect(this.posX + 10, this.posY + 17, this.width - 20, this.height - 27);
+        this.ctx.rect(this.posX + 10, this.posY + 19, this.width - 20, this.height - 25);
         this.ctx.stroke();
-        this.ctx.drawImage(this.img, this.posX + 10, this.posY + 17, this.width - 20, this.height - 27)
+        this.ctx.drawImage(this.img, this.posX + 10, this.posY + 19, this.width - 20, this.height - 25)
         this.ctx.beginPath();
-        this.ctx.font = '13px MedievalSharp';
+        this.ctx.font = '15px MedievalSharp';
         this.ctx.textAlign = 'center';
         this.ctx.fillStyle = '#000';
-        this.ctx.fillText(this.name, this.posX + this.width / 2, this.posY + 14);
+        this.ctx.fillText(this.name, this.posX + this.width / 2, this.posY + 16);
         this.ctx.closePath();
         this.ctx.restore();
     }

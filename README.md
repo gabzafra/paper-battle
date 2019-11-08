@@ -1,4 +1,4 @@
-# paper-battle
+# PaperBattle
 
 A little roguelike deckbuilding card game.
 
